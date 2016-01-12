@@ -1,0 +1,329 @@
+package GenerateThyCode;
+
+
+public enum codes {
+    merge("public class MyMergeSort {\n" +
+"     \n" +
+"    private int[] array;\n" +
+"    private int[] tempMergArr;\n" +
+"    private int length;\n" +
+" \n" +
+"    public static void main(String a[]){\n" +
+"         \n" +
+"        int[] inputArr = {45,23,11,89,77,98,4,28,65,43};\n" +
+"        MyMergeSort mms = new MyMergeSort();\n" +
+"        mms.sort(inputArr);\n" +
+"        for(int i:inputArr){\n" +
+"            System.out.print(i);\n" +
+"            System.out.print(\" \");\n" +
+"        }\n" +
+"    }\n" +
+"     \n" +
+"    public void sort(int inputArr[]) {\n" +
+"        this.array = inputArr;\n" +
+"        this.length = inputArr.length;\n" +
+"        this.tempMergArr = new int[length];\n" +
+"        doMergeSort(0, length - 1);\n" +
+"    }\n" +
+" \n" +
+"    private void doMergeSort(int lowerIndex, int higherIndex) {\n" +
+"         \n" +
+"        if (lowerIndex < higherIndex) {\n" +
+"            int middle = lowerIndex + (higherIndex - lowerIndex) / 2;\n" +
+"            // Below step sorts the left side of the array\n" +
+"            doMergeSort(lowerIndex, middle);\n" +
+"            // Below step sorts the right side of the array\n" +
+"            doMergeSort(middle + 1, higherIndex);\n" +
+"            // Now merge both sides\n" +
+"            mergeParts(lowerIndex, middle, higherIndex);\n" +
+"        }\n" +
+"    }\n" +
+" \n" +
+"    private void mergeParts(int lowerIndex, int middle, int higherIndex) {\n" +
+" \n" +
+"        for (int i = lowerIndex; i <= higherIndex; i++) {\n" +
+"            tempMergArr[i] = array[i];\n" +
+"        }\n" +
+"        int i = lowerIndex;\n" +
+"        int j = middle + 1;\n" +
+"        int k = lowerIndex;\n" +
+"        while (i <= middle && j <= higherIndex) {\n" +
+"            if (tempMergArr[i] <= tempMergArr[j]) {\n" +
+"                array[k] = tempMergArr[i];\n" +
+"                i++;\n" +
+"            } else {\n" +
+"                array[k] = tempMergArr[j];\n" +
+"                j++;\n" +
+"            }\n" +
+"            k++;\n" +
+"        }\n" +
+"        while (i <= middle) {\n" +
+"            array[k] = tempMergArr[i];\n" +
+"            k++;\n" +
+"            i++;\n" +
+"        }\n" +
+" \n" +
+"    }\n" +
+"}\n" +
+"")
+    ,bubble("public class MyBubbleSort {\n" +
+"  \n" +
+"    // logic to sort the elements\n" +
+"    public static void bubble_srt(int array[]) {\n" +
+"        int n = array.length;\n" +
+"        int k;\n" +
+"        for (int m = n; m >= 0; m--) {\n" +
+"            for (int i = 0; i < n - 1; i++) {\n" +
+"                k = i + 1;\n" +
+"                if (array[i] > array[k]) {\n" +
+"                    swapNumbers(i, k, array);\n" +
+"                }\n" +
+"            }\n" +
+"            printNumbers(array);\n" +
+"        }\n" +
+"    }\n" +
+"  \n" +
+"    private static void swapNumbers(int i, int j, int[] array) {\n" +
+"  \n" +
+"        int temp;\n" +
+"        temp = array[i];\n" +
+"        array[i] = array[j];\n" +
+"        array[j] = temp;\n" +
+"    }\n" +
+"  \n" +
+"    private static void printNumbers(int[] input) {\n" +
+"          \n" +
+"        for (int i = 0; i < input.length; i++) {\n" +
+"            System.out.print(input[i] + \", \");\n" +
+"        }\n" +
+"        System.out.println(\"\\n\");\n" +
+"    }\n" +
+"  \n" +
+"    public static void main(String[] args) {\n" +
+"        int[] input = { 4, 2, 9, 6, 23, 12, 34, 0, 1 };\n" +
+"        bubble_srt(input);\n" +
+"  \n" +
+"    }\n" +
+"}\n" +
+"")
+    ,selection("public class MySelectionSort {\n" +
+" \n" +
+"    public static int[] doSelectionSort(int[] arr){\n" +
+"         \n" +
+"        for (int i = 0; i < arr.length - 1; i++)\n" +
+"        {\n" +
+"            int index = i;\n" +
+"            for (int j = i + 1; j < arr.length; j++)\n" +
+"                if (arr[j] < arr[index])\n" +
+"                    index = j;\n" +
+"      \n" +
+"            int smallerNumber = arr[index]; \n" +
+"            arr[index] = arr[i];\n" +
+"            arr[i] = smallerNumber;\n" +
+"        }\n" +
+"        return arr;\n" +
+"    }\n" +
+"     \n" +
+"    public static void main(String a[]){\n" +
+"         \n" +
+"        int[] arr1 = {10,34,2,56,7,67,88,42};\n" +
+"        int[] arr2 = doSelectionSort(arr1);\n" +
+"        for(int i:arr2){\n" +
+"            System.out.print(i);\n" +
+"            System.out.print(\", \");\n" +
+"        }\n" +
+"    }\n" +
+"}\n" +
+"")
+    ,insertion("public class MyInsertionSort {\n" +
+" \n" +
+"    public static void main(String a[]){\n" +
+"        int[] arr1 = {10,34,2,56,7,67,88,42};\n" +
+"        int[] arr2 = doInsertionSort(arr1);\n" +
+"        for(int i:arr2){\n" +
+"            System.out.print(i);\n" +
+"            System.out.print(\", \");\n" +
+"        }\n" +
+"    }\n" +
+"     \n" +
+"    public static int[] doInsertionSort(int[] input){\n" +
+"         \n" +
+"        int temp;\n" +
+"        for (int i = 1; i < input.length; i++) {\n" +
+"            for(int j = i ; j > 0 ; j--){\n" +
+"                if(input[j] < input[j-1]){\n" +
+"                    temp = input[j];\n" +
+"                    input[j] = input[j-1];\n" +
+"                    input[j-1] = temp;\n" +
+"                }\n" +
+"            }\n" +
+"        }\n" +
+"        return input;\n" +
+"    }\n" +
+"}\n" +
+"")
+    ,quick("public class MyQuickSort {\n" +
+"     \n" +
+"    private int array[];\n" +
+"    private int length;\n" +
+" \n" +
+"    public void sort(int[] inputArr) {\n" +
+"         \n" +
+"        if (inputArr == null || inputArr.length == 0) {\n" +
+"            return;\n" +
+"        }\n" +
+"        this.array = inputArr;\n" +
+"        length = inputArr.length;\n" +
+"        quickSort(0, length - 1);\n" +
+"    }\n" +
+" \n" +
+"    private void quickSort(int lowerIndex, int higherIndex) {\n" +
+"         \n" +
+"        int i = lowerIndex;\n" +
+"        int j = higherIndex;\n" +
+"        // calculate pivot number, I am taking pivot as middle index number\n" +
+"        int pivot = array[lowerIndex+(higherIndex-lowerIndex)/2];\n" +
+"        // Divide into two arrays\n" +
+"        while (i <= j) {\n" +
+"            /**\n" +
+"             * In each iteration, we will identify a number from left side which\n" +
+"             * is greater then the pivot value, and also we will identify a number\n" +
+"             * from right side which is less then the pivot value. Once the search\n" +
+"             * is done, then we exchange both numbers.\n" +
+"             */\n" +
+"            while (array[i] < pivot) {\n" +
+"                i++;\n" +
+"            }\n" +
+"            while (array[j] > pivot) {\n" +
+"                j--;\n" +
+"            }\n" +
+"            if (i <= j) {\n" +
+"                exchangeNumbers(i, j);\n" +
+"                //move index to next position on both sides\n" +
+"                i++;\n" +
+"                j--;\n" +
+"            }\n" +
+"        }\n" +
+"        // call quickSort() method recursively\n" +
+"        if (lowerIndex < j)\n" +
+"            quickSort(lowerIndex, j);\n" +
+"        if (i < higherIndex)\n" +
+"            quickSort(i, higherIndex);\n" +
+"    }\n" +
+" \n" +
+"    private void exchangeNumbers(int i, int j) {\n" +
+"        int temp = array[i];\n" +
+"        array[i] = array[j];\n" +
+"        array[j] = temp;\n" +
+"    }\n" +
+"     \n" +
+"    public static void main(String a[]){\n" +
+"         \n" +
+"        MyQuickSort sorter = new MyQuickSort();\n" +
+"        int[] input = {24,2,45,20,56,75,2,56,99,53,12};\n" +
+"        sorter.sort(input);\n" +
+"        for(int i:input){\n" +
+"            System.out.print(i);\n" +
+"            System.out.print(\" \");\n" +
+"        }\n" +
+"    }\n" +
+"}\n" +
+"")
+    ,Linearsearch("public class MyLinearSearch {\n" +
+" \n" +
+"    public static int linerSearch(int[] arr, int key){\n" +
+"         \n" +
+"        int size = arr.length;\n" +
+"        for(int i=0;i<size;i++){\n" +
+"            if(arr[i] == key){\n" +
+"                return i;\n" +
+"            }\n" +
+"        }\n" +
+"        return -1;\n" +
+"    }\n" +
+"     \n" +
+"    public static void main(String a[]){\n" +
+"         \n" +
+"        int[] arr1= {23,45,21,55,234,1,34,90};\n" +
+"        int searchKey = 34;\n" +
+"        System.out.println(\"Key \"+searchKey+\" found at index: \"+linerSearch(arr1, searchKey));\n" +
+"        int[] arr2= {123,445,421,595,2134,41,304,190};\n" +
+"        searchKey = 421;\n" +
+"        System.out.println(\"Key \"+searchKey+\" found at index: \"+linerSearch(arr2, searchKey));\n" +
+"    }\n" +
+"}\n" +
+"")
+    ,Binarysearch1("public class MyBinarySearch {\n" +
+" \n" +
+"    public int binarySearch(int[] inputArr, int key) {\n" +
+"         \n" +
+"        int start = 0;\n" +
+"        int end = inputArr.length - 1;\n" +
+"        while (start <= end) {\n" +
+"            int mid = (start + end) / 2;\n" +
+"            if (key == inputArr[mid]) {\n" +
+"                return mid;\n" +
+"            }\n" +
+"            if (key < inputArr[mid]) {\n" +
+"                end = mid - 1;\n" +
+"            } else {\n" +
+"                start = mid + 1;\n" +
+"            }\n" +
+"        }\n" +
+"        return -1;\n" +
+"    }\n" +
+"  \n" +
+"    public static void main(String[] args) {\n" +
+"         \n" +
+"        MyBinarySearch mbs = new MyBinarySearch();\n" +
+"        int[] arr = {2, 4, 6, 8, 10, 12, 14, 16};\n" +
+"        System.out.println(\"Key 14's position: \"+mbs.binarySearch(arr, 14));\n" +
+"        int[] arr1 = {6,34,78,123,432,900};\n" +
+"        System.out.println(\"Key 432's position: \"+mbs.binarySearch(arr1, 432));\n" +
+"    }\n" +
+"}\n" +
+"")
+    ,Binarysearch2("public class MyRecursiveBinarySearch {\n" +
+" \n" +
+"    public static int recursiveBinarySearch(int[] sortedArray, int start, int end, int key) {\n" +
+"         \n" +
+"        if (start < end) {\n" +
+"            int mid = start + (end - start) / 2; \n" +
+"            if (key < sortedArray[mid]) {\n" +
+"                return recursiveBinarySearch(sortedArray, start, mid, key);\n" +
+"                 \n" +
+"            } else if (key > sortedArray[mid]) {\n" +
+"                return recursiveBinarySearch(sortedArray, mid+1, end , key);\n" +
+"                 \n" +
+"            } else {\n" +
+"                return mid;  \n" +
+"            }\n" +
+"        }\n" +
+"        return -(start + 1); \n" +
+"    }\n" +
+" \n" +
+"    public static void main(String[] args) {\n" +
+"         \n" +
+"        int[] arr1 = {2,45,234,567,876,900,976,999};\n" +
+"        int index = recursiveBinarySearch(arr1,0,arr1.length,45);\n" +
+"        System.out.println(\"Found 45 at \"+index+\" index\");\n" +
+"        index = recursiveBinarySearch(arr1,0,arr1.length,999);\n" +
+"        System.out.println(\"Found 999 at \"+index+\" index\");\n" +
+"        index = recursiveBinarySearch(arr1,0,arr1.length,876);\n" +
+"        System.out.println(\"Found 876 at \"+index+\" index\");\n" +
+"    }\n" +
+"}\n" +
+"");
+    
+    private final String text;
+    
+    codes(String text)
+    {
+        this.text=text;
+    }
+    
+    String getText()
+    {
+     return this.text;   
+    }
+};
